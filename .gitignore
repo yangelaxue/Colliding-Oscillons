@@ -1,0 +1,16 @@
+# Images, videos and data
+*.mp4
+*.p
+*.png
+
+# ipynb checkpoints
+*ipynb_checkpoints
+
+# __pycache__
+*__pycache__
+
+# Stuff for paper
+Stuff for Paper
+
+# Tests
+Tests
