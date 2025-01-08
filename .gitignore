@@ -2,6 +2,7 @@
 *.mp4
 *.p
 *.png
+*.zip
 
 # ipynb checkpoints
 *ipynb_checkpoints
@@ -11,6 +12,10 @@
 
 # Stuff for paper
 Stuff for Paper
+images_for_paper
+animations
+waves_plots
 
 # Tests
 Tests
+PLOT for peter.ipynb

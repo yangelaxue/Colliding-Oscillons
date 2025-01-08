@@ -8,7 +8,7 @@ This file visualises LE data by
 
 import numpy as np
 import matplotlib.pyplot as plt
-import os
+import os, pickle
 
 from matplotlib.animation import FuncAnimation, FFMpegWriter
 # from IPython import display
@@ -21,11 +21,11 @@ from utils.visualisation_utils import scatterfield_3D, get_opacity
 
 # output_dir = "/media/yangelaxue/TRANSFER/Colliding_Oscillons/CE2"
 # output_dir = "/media/yangelaxue/TRANSFER/Colliding_Oscillons/alpha_beta-0.05_100_200.450623/smash_osc41_osc29_0.01c_v1"
-# output_dir = "/media/yangelaxue/TRANSFER/Colliding_Oscillons/alpha_beta-0.25_80_351.512634/smash_osc22_osc4_0.01c_v1/larger_box"
-output_dir = "/home/yangelaxue/Documents/Uni/Masters/Colliding Oscillons/Test Leon/CE"
+output_dir = "/media/yangelaxue/23E7CCB1624D2A50/Colliding_Oscillons/alpha_beta-0.5_50_250.804626/trial_2/smash_osc3_128_osc10_128_0.02"
+# output_dir = "/media/yangelaxue/23E7CCB1624D2A50/Colliding_Oscillons/alpha_beta-0.5_50_250.804626/trial_2/osc2_128/boost_0.02c_256"
 
 data = LATTICEEASY(output_dir)
-timelist = [i for i in range(0,len(data.t),1)][::]
+timelist = [i for i in range(0,len(data.t),1)][::-1]
 # timelist = [0,len(data.t)-1]
 print(f"Making plots for times:\n{data.t[timelist]}",)
 slices = [slice(0,data.domain_dimensions[0],1),slice(0,data.domain_dimensions[1],1),slice(0,data.domain_dimensions[2],1)]
@@ -33,7 +33,7 @@ slices[1] = data.domain_dimensions[1]//2
 slices = tuple(slices)
 
 # Edens
-plot_Edens_volume = 1
+plot_Edens_volume = 0
 plot_Edens_slice = 1
 animate_Edens_volume = False
 animate_Edens_slice = False
@@ -126,6 +126,8 @@ if any((plot_Edens_volume,plot_Edens_slice)):
             ax_slc.set_xlabel("x (pr)")
             ax_slc.set_ylabel("z (pr)")
             ax_slc.set_title(f"Edens, time (pr) = {data.t[timelist[i]]}")
+
+            pickle.dump(Edens[slices],open(os.path.join(output_dir,f"edens_slice_{data.t[timelist[i]]}.p"),"wb"))
 
             fig_slc.savefig(os.path.join(output_dir,f"Edens slice {data.t[timelist[i]]}.png"))
             plt.close()

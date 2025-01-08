@@ -363,7 +363,7 @@ def load_phi(output_dir, domain_dimension, t_idx):
     N = 0
     
     while os.path.exists(os.path.join(output_dir,phis_fnames.format(N))):
-        f_len = sum(1 for line in open(os.path.join(output_dir,phis_fnames.format(N))))//(np.product(domain_dimension))
+        f_len = sum(1 for line in open(os.path.join(output_dir,phis_fnames.format(N))))//(np.prod(domain_dimension))
         if f_len<t_idx+1:
             t_idx -= f_len
             N += 1
@@ -372,7 +372,7 @@ def load_phi(output_dir, domain_dimension, t_idx):
             break
     
     phi = np.loadtxt(
-        os.path.join(output_dir,phis_fnames.format(N)), delimiter=None, skiprows=(np.product(domain_dimension)+1)*t_idx, max_rows=(np.product(domain_dimension))
+        os.path.join(output_dir,phis_fnames.format(N)), delimiter=None, skiprows=(np.prod(domain_dimension)+1)*t_idx, max_rows=(np.prod(domain_dimension))
         ).reshape(*domain_dimension)
     
     return phi
@@ -415,7 +415,7 @@ def load_phip(output_dir, domain_dimension, t_idx):
     N = 0
     
     while os.path.exists(os.path.join(output_dir,phips_fnames.format(N))):
-        f_len = sum(1 for line in open(os.path.join(output_dir,phips_fnames.format(N))))//(np.product(domain_dimension))
+        f_len = sum(1 for line in open(os.path.join(output_dir,phips_fnames.format(N))))//(np.prod(domain_dimension))
         if f_len<t_idx+1:
             t_idx -= f_len
             N += 1
@@ -424,7 +424,7 @@ def load_phip(output_dir, domain_dimension, t_idx):
             break
     
     phip = np.loadtxt(
-        os.path.join(output_dir,phips_fnames.format(N)), delimiter=None, skiprows=(np.product(domain_dimension)+1)*t_idx, max_rows=(np.product(domain_dimension))
+        os.path.join(output_dir,phips_fnames.format(N)), delimiter=None, skiprows=(np.prod(domain_dimension)+1)*t_idx, max_rows=(np.prod(domain_dimension))
         ).reshape(*domain_dimension)
     
     return phip

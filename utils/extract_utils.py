@@ -162,7 +162,7 @@ def interpolate(shape_i:tuple, *vals):
     xyz_i = (np.linspace(0,1,shape_i_x) for shape_i_x in shape_i)
     XYZ_i = np.array(np.meshgrid(*xyz_i, indexing='ij'))
     XYZ_i_reshape = XYZ_i.transpose(tuple((dim+1)%(ndim+1) for dim in range(ndim+1)))
-    all_points = XYZ_i_reshape.flatten().reshape(np.product(shape_i),ndim)
+    all_points = XYZ_i_reshape.flatten().reshape(np.prod(shape_i),ndim)
     
     fs_i = tuple(interpolator(all_points).reshape(shape_i) for interpolator in interpolators)
     

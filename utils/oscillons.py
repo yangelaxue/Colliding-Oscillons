@@ -57,7 +57,7 @@ def get_oscillon_masses(density, domain_width, oscillons, labels=None):
         labels = get_labels(oscillons)
     labels = labels if type(labels) is list else [labels]
 
-    dV = np.product(domain_width/density.shape)
+    dV = np.prod(domain_width/density.shape)
     masses = np.array([(density[oscillons==label]*dV).sum() for label in labels])
     
     return masses
@@ -212,7 +212,7 @@ def get_radius(domain_width, oscillons, labels):
         labels = get_labels(oscillons)
     labels = labels if type(labels) is list else [labels]
     
-    dV = np.product(domain_width/oscillons.shape)
+    dV = np.prod(domain_width/oscillons.shape)
     Vs = [(oscillons==label).sum()*dV for label in labels]
     return np.array([(3*V/(4*np.pi))**(1/3) for V in Vs])
 
@@ -264,7 +264,7 @@ def get_oscllon_numdens(oscillons, domain_width):
     """
     
     N = oscillons.max()+1
-    V = np.product(domain_width)
+    V = np.prod(domain_width)
     
     return N/V
     
